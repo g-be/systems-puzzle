@@ -31,3 +31,9 @@ seems the models.py file needs an __init__ and __repr__ function
 still not printing... I either need a str method or to alter the call to be repr
 
 after including a __str__ method, there still was no output to the page. in response, I'm going to convert the 'results' list into a multiline string
+
+to get the 'multiline' string I have to change the mimetype of the data (when interpreted as html, the '\n' newline character is disregarded, hence I needed to use the a mimetype of 'text/plain')
+
+at this point, I don't see any more bugs, so let's add a bit of functionality: i want to include a new page where you can see the database items without requiring an insert first
+
+just duplicate the html form button (with a different name) which calls a duplicate success() method (with a different name. I could have simply called the same one 'success' page but I wanted a distinct url).
