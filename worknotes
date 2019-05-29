@@ -1,0 +1,33 @@
+# notes
+
+install github for windows
+install docker for windows
+fork systems-puzzle
+pull systems-puzzle
+run readme commands
+
+localhost:8080 is not returning anything, check ports aligned properly
+
+change docker-compose nginx ports from 80:8080 to 8080:80
+- success, but now bad gateway 502
+
+remove -d option from docker-compose to see output
+
+logs suggest flaskapp is on port 5000 but the config looks for flaskapp on port 5001
+change flaskapp.conf to 5000 and dockerfile to 5000 seems to fix this
+no more 502 error
+
+when entering a non-integer value for quantity field, error is returned. looking into wtforms.validators for integers...
+fixed by adding import IntegerField
+
+when submitting valid data, redirection is broken (goes to localhost%2Clocalhost:port)
+the flask documentation doesnt include the leading slash slash, attempting to fix by removing leading '/' in @app.route
+nvm that returns an error
+the proper fix is to edit the flaskapp.conf file and remove the redundant 'proxy_set_header Host' line
+
+now the redirection works, but the output is ... incomplete. it appears that the database is not read properly or not written to properly
+time to rtfm... the flask sqlalchemy manual
+seems the models.py file needs an __init__ and __repr__ function 
+still not printing... I either need a str method or to alter the call to be repr
+
+after including a __str__ method, there still was no output to the page. in response, I'm going to convert the 'results' list into a multiline string

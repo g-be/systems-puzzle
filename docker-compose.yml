@@ -21,8 +21,10 @@ services:
       - db
   nginx:
     image: "nginx:1.13.5"
+    # expose:
+    #   - "8080"
     ports:
-      - "80:8080"
+      - "8080:80"
     volumes:
       - ./conf.d:/etc/nginx/conf.d
     networks:

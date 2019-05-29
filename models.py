@@ -12,3 +12,15 @@ class Items(Base):
     quantity = Column(Integer)
     description = Column(String(256))
     date_added = Column(DateTime())
+
+    def __init__(self, name=None, quantity=0, description=None, date_added=None):
+        self.name = name
+        self.quantity = quantity
+        self.description = description
+        self.date_added = date_added
+
+    def __repr__(self):
+        return '<Item %s (%d), %s, %s>' % (self.name, self.quantity, self.description, self.date_added)
+
+    def __str__(self):
+    	return '(%d) %s: %s | added %s' % (self.quantity, self.name, self.description, self.date_added)
